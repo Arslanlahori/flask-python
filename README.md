@@ -41,6 +41,17 @@ def insert():
     cur.close()
     return "Inserted Successfully"
     
+#INSERT THE VALUE IN TABLE ON BROWSER
+@app.route('/insertonbrowser/<i>/<inn>/<ic>/<ia>')
+def insertonbrowser(i, inn, ic, ia):
+    query = "INSERT INTO onecrop(id,name,color,area) VALUES({},'{}','{}',{})".format(
+        i, inn, ic, ia)
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    mysql.connection.commit()
+    cur.close()
+    return "Successfully Inserted Through Browser"
+    
 #update function   
 @app.route('/update/<upn>/<cn>')
 def update(upn, cn):
