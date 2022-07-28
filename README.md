@@ -20,7 +20,7 @@ mysql = MySQL(app)
 def method_name():
     return "this program is used to fetch data fron database and show on browser"
 
-
+#CREATE TABLE 
 @app.route('/create')
 def create_table():
     query = "CREATE TABLE if not exist onecrop(id int primary key , name varchar(20), color varchar(20), area int)"
@@ -30,7 +30,7 @@ def create_table():
     cur.close()
     return "Created Successfully"
 
-
+#INSERT FUNCTION
 @app.route('/insert')
 def insert():
     query = "INSERT INTO onecrop(id,name,color,area) VALUES(%s,%s,%s,%s)"
@@ -50,7 +50,7 @@ def update(upn, cn):
     mysql.connection.commit()
     cur.close()
     return "Update Data Successfully "
-
+#CROP OF LIST
 @app.route('/fetch/list')
 def fetchlist():
     query = "SELECT * FROM onecrop "
@@ -59,7 +59,7 @@ def fetchlist():
     show = cur.fetchall()
     return render_template("onecroptable.html", show=show)
 
-
+#FETCH FUNCTION BY ID
 @app.route('/fetch/<a>')
 def fetch(a):
     query = ("SELECT * FROM onecrop WHERE id={}".format(a))
@@ -68,7 +68,7 @@ def fetch(a):
     show = cur.fetchall()
     return render_template("onecroptable.html", show=show)
 
-
+#DELETE FUNCTION BY ID
 @app.route('/delete/<b>')
 def delete(b):
     query = ("DELETE FROM onecrop WHERE  id={}".format(b))
