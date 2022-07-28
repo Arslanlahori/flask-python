@@ -67,7 +67,25 @@ def fetch(a):
     cur.execute(query)
     show = cur.fetchall()
     return render_template("onecroptable.html", show=show)
-
+    
+#FETCH FUNCTION BY NAME
+@app.route('/fetch/<n>')
+def fetch(n):
+    query = ("SELECT * FROM onecrop WHERE name='{}'".format())
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    show = cur.fetchall()
+    return render_template("onecroptable.html", show=show)
+   
+#DELETE FUNCTION BY NAME
+@app.route('/delete/<nd>')
+def delete(nd):
+    query = ("DELETE FROM onecrop WHERE  name='{}'".format(nd))
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    mysql.connection.commit()
+    return "Deleted Successfully"    
+    
 #DELETE FUNCTION BY ID
 @app.route('/delete/<b>')
 def delete(b):
