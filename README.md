@@ -40,7 +40,16 @@ def insert():
     mysql.connection.commit()
     cur.close()
     return "Inserted Successfully"
-
+    
+#update function   
+@app.route('/update/<upn>/<cn>')
+def update(upn, cn):
+    query = ("UPDATE onecrop SET name='{}' WHERE name='{}'".format(upn, cn))
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    mysql.connection.commit()
+    cur.close()
+    return "Update Data Successfully "
 
 @app.route('/fetch/list')
 def fetchlist():
